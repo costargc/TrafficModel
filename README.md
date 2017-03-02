@@ -1,1 +1,5 @@
 # TrafficModel
+
+In this work we studied the base model for traffic flow know as TASEP(Totally Asymmetric Simple Exclusion Process) in a uni-dimensional lat-tice. We also studied the NaSch model first proposed in 1992 by Nageland Schreckenberg.  In both model, position, velocity, acceleration andthe time are treated as discrete variables where the dynamics happens ina one-dimensional lattice with sizeLwhere each site can be occupied orempty in a system withNparticles.We discuss on the exact solution presented by Derrida in 1993 for theTASEP model and we also show that TASEP and NaSch models are equi-valent when the maximum velocity is given byvm= 1. We also exploredthese models in simulations considering sequential updates and interacti-ons between vehicles and the impact that these considerations have on theflow per density profile diagram.  In conclusion we also we simulated anew model called theAmbulance Modelwhere we considered overtakingdynamics.
+
+Keywords:TASEP, Matrix Product Ansatz, Mean Field Approximation,Cellular Automata, Reaction-Diffusion processes.
