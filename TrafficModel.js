@@ -2,10 +2,10 @@ TASEPobj = {
     position: [],
     speed: [],
     cars: 0,
-    columns: 1000,
+    columns: 10,
     rows: 2,
-    MCsteps: 10000, // total = columns*rows*MCsteps
-    Vmax: 1001,
+    MCsteps: 100, // total = columns*rows*MCsteps
+    Vmax: 10,
     responseInstinct: 0,
     results: {
         flow: 0,
@@ -17,7 +17,7 @@ TASEPobj = {
 // code
 // TASEPobj.cars = 0;
 
-for (i = 20; i < TASEPobj.columns * TASEPobj.rows; i = i + 20) {
+for (i = 1; i < TASEPobj.columns * TASEPobj.rows; i = i + 1) {
     TASEPobj.cars = i;
     make_zeros(TASEPobj);
     // console.log(TASEPobj.position);
@@ -26,10 +26,12 @@ for (i = 20; i < TASEPobj.columns * TASEPobj.rows; i = i + 20) {
     // console.log(TASEPobj.position);
 
     // move_dinamics(TASEPobj);
+    console.log(TASEPobj);
     recursive_move(TASEPobj);
     // console.log(TASEPobj);
     // console.log(TASEPobj.position);
     console.log(TASEPobj.results.flow);
+    // drawGrid(TASEPobj);
 }
 
 //make zeros
