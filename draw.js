@@ -1,5 +1,6 @@
-TASEPobj=TASEPobj = {
-    position: [],
+TASEPobj = TASEPobj = {
+    position: [[1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 1, 0, 1, 0, 1]],
     speed: [],
     cars: 0,
     columns: 10,
@@ -13,6 +14,13 @@ TASEPobj=TASEPobj = {
         averageSpeed: 0,
     }
 }
+
+for (i = 0; i < TASEPobj.position.length; i++) {
+    for (j = 0; j < TASEPobj.position[0].length; j++) {
+        TASEPobj.position[i][j] = Math.floor(Math.random() * 2);
+    }
+}
+
 // code
 drawGrid(TASEPobj);
 // setCars(TASEPobj);
