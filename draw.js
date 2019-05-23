@@ -50,9 +50,11 @@ move=setInterval(function () {
 
 // function - grid
 function drawGrid(obj) {
-    w = obj.columns * 60 + 2;
-    h = obj.rows * 60 + 2;
-    step = 60;
+    linesize=1;
+    step = 1200/obj.columns;
+    w = obj.columns * step + linesize*2;
+    h = obj.rows * step + linesize*2;
+
     mycanvas = document.createElement("canvas");
     mycanvas.setAttribute("id", "canvas");
     mycanvas.setAttribute("width", w);
@@ -63,7 +65,7 @@ function drawGrid(obj) {
     ctx.clearRect(0, 0, mycanvas.width, mycanvas.height);
 
     ctx.strokeStyle = 'gray';
-    ctx.lineWidth = 1;
+    ctx.lineWidth = linesize;
 
     for (i = 1; i < w; i += step) {
         ctx.moveTo(i, 0);
@@ -92,7 +94,7 @@ function setCars(obj) {
         for (j = 0; j < peice[0].length; j++) {
             if (peice[i][j] == 1) {
                 ctx.fillStyle = 'black';
-                ctx.fillRect(j * 60 + 2, i * 60 + 2, 60 - 2, 60 - 2);
+                ctx.fillRect(j * step + linesize*2, i * step + linesize*2, step - linesize*2, step - linesize*2);
             }
         }
     }
