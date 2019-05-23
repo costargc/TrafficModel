@@ -1,7 +1,7 @@
 var TASEPobj = {
     position: [],
     speed: [],
-    cars: 4,
+    cars: 7,
     columns: 10,
     rows: 2,
     MCsteps: 1000, // total = columns*rows*MCsteps
