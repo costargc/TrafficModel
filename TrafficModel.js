@@ -1,38 +1,38 @@
-TASEPobj = {
-    position: [],
-    speed: [],
-    cars: 0,
-    columns: 100,
-    rows: 10,
-    MCsteps: 100000, // total = columns*rows*MCsteps
-    Vmax: 100,
-    responseInstinct: 0,
-    results: {
-        flow: 0,
-        rho: 0,
-        averageSpeed: 0,
-    }
-}
+// TASEPobj = {
+//     position: [],
+//     speed: [],
+//     cars: 0,
+//     columns: 100,
+//     rows: 10,
+//     MCsteps: 100000, // total = columns*rows*MCsteps
+//     Vmax: 100,
+//     responseInstinct: 0,
+//     results: {
+//         flow: 0,
+//         rho: 0,
+//         averageSpeed: 0,
+//     }
+// }
 
 // code
 // TASEPobj.cars = 0;
 
-for (i = 1; i < TASEPobj.columns * TASEPobj.rows; i = i + 1) {
-    TASEPobj.cars = i;
-    make_zeros(TASEPobj);
-    // console.log(TASEPobj.position);
+// for (i = 1; i < TASEPobj.columns * TASEPobj.rows; i = i + 1) {
+//     TASEPobj.cars = i;
+//     make_zeros(TASEPobj);
+//     // console.log(TASEPobj.position);
 
-    populate(TASEPobj);
-    // console.log(TASEPobj.position);
+//     populate(TASEPobj);
+//     // console.log(TASEPobj.position);
 
-    // move_dinamics(TASEPobj);
-    // console.log(TASEPobj);
-    recursive_move(TASEPobj);
-    // console.log(TASEPobj);
-    // console.log(TASEPobj.position);
-    console.log(TASEPobj.results.rho + ", " + TASEPobj.results.flow);
-    // drawGrid(TASEPobj);
-}
+//     // move_dinamics(TASEPobj);
+//     // console.log(TASEPobj);
+//     recursive_move(TASEPobj);
+//     // console.log(TASEPobj);
+//     // console.log(TASEPobj.position);
+//     console.log(TASEPobj.results.rho + ", " + TASEPobj.results.flow);
+//     // drawGrid(TASEPobj);
+// }
 
 //make zeros
 function make_zeros(obj) {
@@ -119,29 +119,32 @@ function move_dinamics(obj) {
     var vmaxcount = 0;
 
     // speed_check=1;
+    if(obj.Vmax-1==vmaxcount){
+        vmaxcount=vmaxcount-1;
+    }
 
     var move = true;
     // console.log(obj.position);
     if (ext_array[x][y] == 1) {
-        while (vmaxcount < obj.Vmax - 1 && move == true) { //loop to keep moving
-
+        while (vmaxcount < obj.Vmax-1 && move == true) { //loop to keep moving
+            // console.log(obj.position);
             if (ext_array[x][y] == 1) {
                 // v[x][y]=Math.min(obj.Vmax,v[x][y]+1);
                 // speed_check = Math.min(obj.Vmax, v[x][y]+1,ext_array[0].length);
                 move = false;
 
-                y_next = y + 1;
+                var y_next = y + 1;
 
                 if (y_next >= L) {
                     y_next = y + 1 - L;
                 }
 
-                x_top = x + 1;
+                var x_top = x + 1;
                 if (x_top >= r) {
                     x_top = x + 1 - r;
                 }
 
-                x_bot = x - 1;
+                var x_bot = x - 1;
                 if (x_bot < 0) {
                     x_bot = x - 1 + r;
                 }
@@ -211,7 +214,7 @@ function move_dinamics(obj) {
                     movecount++;
                 }
 
-                res_array = ext_array;
+                var res_array = ext_array;
                 obj.position = res_array;
 
 
