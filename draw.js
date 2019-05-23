@@ -1,7 +1,7 @@
 var TASEPobj = {
     position: [],
     speed: [],
-    cars: 0,
+    cars: 4,
     columns: 10,
     rows: 2,
     MCsteps: 1000, // total = columns*rows*MCsteps
@@ -15,11 +15,8 @@ var TASEPobj = {
 }
 
 make_zeros(TASEPobj);
-TASEPobj.cars = 3;
 populate(TASEPobj);
-
 drawGrid(TASEPobj);
-
 
 
 move=setInterval(function () {

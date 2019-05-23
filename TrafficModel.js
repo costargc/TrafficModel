@@ -1,18 +1,18 @@
-// TASEPobj = {
-//     position: [],
-//     speed: [],
-//     cars: 0,
-//     columns: 100,
-//     rows: 10,
-//     MCsteps: 100000, // total = columns*rows*MCsteps
-//     Vmax: 100,
-//     responseInstinct: 0,
-//     results: {
-//         flow: 0,
-//         rho: 0,
-//         averageSpeed: 0,
-//     }
-// }
+TASEPobj = {
+    position: [],
+    speed: [],
+    cars: 0,
+    columns: 100,
+    rows: 10,
+    MCsteps: 100000, // total = columns*rows*MCsteps
+    Vmax: 100,
+    responseInstinct: 0,
+    results: {
+        flow: 0,
+        rho: 0,
+        averageSpeed: 0,
+    }
+}
 
 // code
 // TASEPobj.cars = 0;
