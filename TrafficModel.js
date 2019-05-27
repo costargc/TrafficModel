@@ -15,24 +15,24 @@ TASEPobj = {
 }
 
 // code
-// TASEPobj.cars = 0;
+TASEPobj.cars = 0;
 
-// for (i = 1; i < TASEPobj.columns * TASEPobj.rows; i = i + 1) {
-//     TASEPobj.cars = i;
-//     make_zeros(TASEPobj);
-//     // console.log(TASEPobj.position);
+for (i = 1; i < TASEPobj.columns * TASEPobj.rows; i = i + 1) {
+    TASEPobj.cars = i;
+    make_zeros(TASEPobj);
+    // console.log(TASEPobj.position);
 
-//     populate(TASEPobj);
-//     // console.log(TASEPobj.position);
+    populate(TASEPobj);
+    // console.log(TASEPobj.position);
 
-//     // move_dinamics(TASEPobj);
-//     // console.log(TASEPobj);
-//     recursive_move(TASEPobj);
-//     // console.log(TASEPobj);
-//     // console.log(TASEPobj.position);
-//     console.log(TASEPobj.results.rho + ", " + TASEPobj.results.flow);
-//     // drawGrid(TASEPobj);
-// }
+    // move_dinamics(TASEPobj);
+    // console.log(TASEPobj);
+    recursive_move(TASEPobj);
+    // console.log(TASEPobj);
+    // console.log(TASEPobj.position);
+    console.log(TASEPobj.results.rho + ", " + TASEPobj.results.flow);
+    // drawGrid(TASEPobj);
+}
 
 //make zeros
 function make_zeros(obj) {

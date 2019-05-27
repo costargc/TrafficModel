@@ -1,19 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Traffic Model</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
 </head>
+
 <body>
-    
-<!-- <canvas id='canvas' width="600" height="600">
-    canvas not supported
-</canvas> -->
+
+    <form>
+        columns:
+        <select class="form-control" id="columns">
+            <option selected="selected">10</option>
+            <option>50</option>
+            <option>100</option>
+        </select> <br>
+
+        rows:
+        <select class="form-control" id="rows">
+            <option>1</option>
+            <option selected="selected">2</option>
+            <option>5</option>
+            <option>10</option>
+        </select> <br>
+
+        cars:
+        <select class="form-control" id="cars">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option selected="selected">5</option>
+            <option>6</option>
+            <option>7</option>
+        </select> <br>
+
+        Vmax:
+        <select class="form-control" id="Vmax">
+            <option selected="selected">1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>5</option>
+            <option>7</option>
+            <option>15</option>
+            <option>L</option>
+        </select> <br><br>
+
+        <button id="runModel">Run</button>
+        <button id="stopModel">Stop</button>
+        <br><br>
+    </form>
 
 
-    <script src="TrafficModel.js" charset="utf-u"></script>
+    <div id='insideCanvas'></div>
+
+    <div id='insidePlot'></div>
+
+    <div>
+        Flow: <span id="flowdata">0</span>
+    </div>
+
+    <!-- <script src="TrafficModel.js" charset="utf-u"></script> -->
     <script src="draw.js" charset="utf-u"></script>
     <!-- <script src="TrafficModel.js" charset="utf-u"></script> -->
 </body>
