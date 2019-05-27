@@ -2,10 +2,10 @@ TASEPobj = {
     position: [],
     speed: [],
     cars: 0,
-    columns: 100,
-    rows: 10,
-    MCsteps: 100000, // total = columns*rows*MCsteps
-    Vmax: 100,
+    columns: 10,
+    rows: 1,
+    MCsteps: 1000000, // total = columns*rows*MCsteps
+    Vmax: 1,
     responseInstinct: 0,
     results: {
         flow: 0,

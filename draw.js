@@ -14,6 +14,16 @@ TASEPobj = {
     }
 }
 
+$('#columns').change(function () {
+    var value = $('#columns').val() * $("#rows").val();
+    $('#maxValue').text(value);
+});
+
+$('#rows').change(function () {
+    var value = $('#columns').val() * $("#rows").val();
+    $('#maxValue').text(value);
+});
+
 
 
 $("#stopModel").on("click", function (event) {
