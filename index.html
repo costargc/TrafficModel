@@ -8,56 +8,101 @@
     <title>Traffic Model</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
+    <header>
+        <h1>
+            <hr>Totally Asymmetric Simple Exclusion Process (TASEP)</h1>
+    </header>
+    <hr>
+    <br>
+
+    <tr>
+        <td colspan="2" rowspan="1">
+            TASEP simulation for traffic flow using cellular automata.
+        </td>
+
+    </tr>
+    <br><br>
+
     <form>
-        columns:
-        <select class="form-control" id="columns">
-            <option selected="selected">10</option>
-            <option>50</option>
-            <option>100</option>
-        </select> <br>
+        <div class="Row">
+            <div class="Column">columns:</div>
+            <div class="Column">
 
-        rows:
-        <select class="form-control" id="rows">
-            <option>1</option>
-            <option selected="selected">2</option>
-            <option>5</option>
-            <option>10</option>
-        </select> <br>
+                <select class="form-control" id="columns" style="width: 50px">
+                    <option selected="selected">10</option>
+                    <option>50</option>
+                    <option>100</option>
+                </select>
 
-        cars:
-        <select class="form-control" id="cars">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option selected="selected">5</option>
-            <option>6</option>
-            <option>7</option>
-        </select> <br>
+            </div>
+        </div>
 
-        Vmax:
-        <select class="form-control" id="Vmax">
-            <option selected="selected">1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>5</option>
-            <option>7</option>
-            <option>15</option>
-            <option>L</option>
-        </select> <br><br>
+
+        <div class="Row">
+            <div class="Column">rows:</div>
+            <div class="Column">
+
+                <select class="form-control" id="rows" style="width: 50px">
+                    <option>1</option>
+                    <option selected="selected">2</option>
+                    <option>5</option>
+                    <option>10</option>
+                </select>
+
+            </div>
+        </div>
+
+        <div class="Row">
+            <div class="Column">cars:</div>
+            <div class="Column">
+
+                <select class="form-control" id="cars" style="width: 50px">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option selected="selected">5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                </select>
+
+            </div>
+        </div>
+
+        <div class="Row">
+            <div class="Column">Vmax:</div>
+            <div class="Column">
+
+                <select class="form-control" id="Vmax" style="width: 50px">
+                    <option selected="selected">1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>5</option>
+                    <option>7</option>
+                    <option>15</option>
+                    <option>L</option>
+                </select>
+
+            </div>
+        </div>
+
+        <br>
 
         <button id="runModel">Run</button>
         <button id="stopModel">Stop</button>
         <br><br>
     </form>
 
-
-    <div id='insideCanvas'></div>
-
     <div id='insidePlot'></div>
+    <br>
+    <div id='insideCanvas'></div>
 
     <div>
         Flow: <span id="flowdata">0</span>

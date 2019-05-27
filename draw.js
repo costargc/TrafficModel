@@ -14,73 +14,6 @@ TASEPobj = {
     }
 }
 
-function createChart(){
-
-if(document.getElementById('myChart')!=null){
-    document.getElementById('myChart').remove();
-}
-
-myPlot = document.createElement("canvas");
-myPlot.setAttribute("id", "myChart");
-document.getElementById('insidePlot').setAttribute("style", "width: 1200px; height: 300px")
-myPlot.setAttribute("width", 1200);
-myPlot.setAttribute("height", 300);
-
-document.getElementById("insidePlot").appendChild(myPlot);
-
-var chartjs = myPlot.getContext('2d');
-var myChart = new Chart(myPlot, {
-    type: 'line',
-
-    data: {
-        labels: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
-        datasets: [{
-            // label: false,
-            data: [0.1, 1, 0.9, 0.5, 0.1, 0.2, 0.1, 1, 0.9, 0.5, 0.1, 0.2, 0.1, 1, 0.9, 0.5, 0.1, 0.2],
-            lineTension: 0,
-            borderWidth: 1,
-            borderColor: 'black',
-            fill: false,
-            borderDash: [5, 5],
-        }]
-    },
-    options: {
-        // spanGaps: false,
-        responsive: true,
-        maintainAspectRatio: false,
-        title: {
-            text: "Model Flow",
-            display: true,
-        },
-        legend: {
-            display: false
-        },
-        scales: {
-            xAxes: [{
-                display: false,
-                scaleLabel: {
-                    display: true,
-                    labelString: 'Month'
-                }
-            }],
-            yAxes: [{
-                display: true,
-                ticks: {
-                    max: 1,
-                    min: 0,
-                },
-                scaleLabel: {
-                    display: true,
-                    labelString: 'Flow'
-                }
-            }]
-        },
-    }
-
-});
-};
-
-
 
 
 $("#stopModel").on("click", function (event) {
@@ -89,6 +22,9 @@ $("#stopModel").on("click", function (event) {
 
 $("#runModel").on("click", function (event) {
     event.preventDefault();
+
+    myFlowdataLabel = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    myFlowdata = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
     count = 0;
     TASEPobj.cars = $('#cars').val();
@@ -103,6 +39,8 @@ $("#runModel").on("click", function (event) {
 
     createChart();
     startModelRun();
+
+
 });
 
 // for (i = 0; i < TASEPobj.position.length; i++) {
@@ -118,13 +56,80 @@ $("#runModel").on("click", function (event) {
 // code end
 
 
+// function - create chart
+function createChart() {
+
+    if (document.getElementById('myChart') != null) {
+        document.getElementById('myChart').remove();
+    }
+    // else {
+
+    myPlot = document.createElement("canvas");
+    myPlot.setAttribute("id", "myChart");
+    document.getElementById('insidePlot').setAttribute("style", "width: 800px; height: 200px")
+
+    document.getElementById("insidePlot").appendChild(myPlot);
+
+    // chartjs = myPlot.getContext('2d');
+    myChart = new Chart(myPlot, {
+        type: 'line',
+
+        data: {
+            labels: myFlowdataLabel,
+            datasets: [{
+                // label: false,
+                data: myFlowdata,
+                lineTension: 0,
+                borderWidth: 1,
+                borderColor: 'black',
+                fill: false,
+                borderDash: [5, 5],
+            }]
+        },
+        options: {
+            // spanGaps: false,
+            responsive: true,
+            maintainAspectRatio: false,
+            title: {
+                text: "Model Flow",
+                display: true,
+            },
+            legend: {
+                display: false
+            },
+            scales: {
+                xAxes: [{
+                    display: false,
+                    scaleLabel: {
+                        display: false,
+                        labelString: ''
+                    }
+                }],
+                yAxes: [{
+                    display: true,
+                    ticks: {
+                        // max: 1,
+                        // min: 0,
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Flow (100 count cycle)'
+                    }
+                }]
+            },
+        }
+
+    });
+    // }
+};
+// function - create chart end
 
 // function - grid
 function drawGrid(obj) {
-    linesize = 1;
-    step = 1200 / obj.columns;
-    w = obj.columns * step + linesize * 2;
-    h = obj.rows * step + linesize * 2;
+    var linesize = 1;
+    var step = 800 / obj.columns;
+    var w = obj.columns * step + linesize * 2;
+    var h = obj.rows * step + linesize * 2;
 
 
     mycanvas = document.createElement("canvas");
@@ -171,7 +176,6 @@ function startModelRun() {
 
     move = setInterval(function () {
 
-
         move_dinamics(TASEPobj);
         // console.log(TASEPobj.position);
         document.getElementById("canvas").remove();
@@ -180,6 +184,16 @@ function startModelRun() {
         document.getElementById("flowdata").textContent = (TASEPobj.results.flow / count);
         // console.log(TASEPobj.position)
         drawGrid(TASEPobj);
+        if (count % 100 == 0) {
+            myFlowdata.shift(); myFlowdata.push(TASEPobj.results.flow / count);
+            myFlowdataLabel.shift(); myFlowdataLabel.push(count / 100);
+            // createChart();
+            myChart.update(0);
+            // console.log(myChart.data);
+        }
+
+        // console.log(myFlowdata);
+
         // console.log(TASEPobj_in.position);
 
 
@@ -189,7 +203,9 @@ function startModelRun() {
 
 // function - cars
 function drawCars(obj) {
-    peice = obj.position;
+    var step = 800 / obj.columns;
+    var linesize = 1;
+    var peice = obj.position;
     var ctx = mycanvas.getContext("2d");
     for (i = 0; i < peice.length; i++) {
         for (j = 0; j < peice[0].length; j++) {
@@ -205,10 +221,10 @@ function drawCars(obj) {
 
 // populate function
 function populate(obj) {
-    car = obj.cars;
+    var car = obj.cars;
     obj.results.flow = 0;
     obj.results.rho = car / obj.rows / obj.columns;
-    array = obj.position;
+    var array = obj.position;
     while (car > 0) {
         if (car > array.length * array[0].length) {
             return console.log("error: car > ext_array.length*int_array.length")
