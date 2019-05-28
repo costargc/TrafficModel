@@ -3,7 +3,7 @@ TASEPobj = {
     speed: [],
     cars: 0,
     columns: 100,
-    rows: 10,
+    rows: 1,
     MCsteps: 1000, // total = columns*rows*MCsteps
     Vmax: 1,
     responseInstinct: 0,
@@ -17,7 +17,7 @@ TASEPobj = {
 // code
 TASEPobj.cars = 0;
 
-for (i = 1; i < TASEPobj.columns * TASEPobj.rows; i = i + 1) {
+for (var i = 1; i < TASEPobj.columns * TASEPobj.rows; i = i + 1) {
     TASEPobj.cars = i;
     make_zeros(TASEPobj);
     // console.log(TASEPobj.position);
@@ -30,7 +30,7 @@ for (i = 1; i < TASEPobj.columns * TASEPobj.rows; i = i + 1) {
     recursive_move(TASEPobj);
     // console.log(TASEPobj);
     // console.log(TASEPobj.position);
-    console.log(TASEPobj.results.rho + ", " + TASEPobj.results.flow);
+    console.log(TASEPobj.results.rho + ", " + TASEPobj.results.flow/counter);
     // drawGrid(TASEPobj);
 }
 
@@ -97,10 +97,11 @@ function recursive_move(obj) {
     counter = obj.MCsteps * obj.rows * obj.columns;
     // arr=obj.position;
     // Marr = move_dinamics(obj);
-    while (counter > 0) {
+    // while (counter > 0) {
+        for(var i=0;i<counter;i++){
         move_dinamics(obj);
         // console.log(M_arr);
-        counter--;
+        // counter--;
     }
     // obj.position = Marr;
     return obj
@@ -114,6 +115,7 @@ function move_dinamics(obj) {
     var L = ext_array[0].length;
     var x = Math.floor(Math.random() * r);
     var y = Math.floor(Math.random() * L);
+
 
     var movecount = 0;
     var vmaxcount = 0;

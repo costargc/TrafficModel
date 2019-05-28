@@ -72,7 +72,7 @@ function createChart() {
     if (document.getElementById('myChart') != null) {
         document.getElementById('myChart').remove();
     }
-    // else {
+    
 
     myPlot = document.createElement("canvas");
     myPlot.setAttribute("id", "myChart");
@@ -154,13 +154,13 @@ function drawGrid(obj) {
     ctx.strokeStyle = 'gray';
     ctx.lineWidth = linesize;
 
-    for (i = 1; i < w; i += step) {
+    for (var i = 1; i < w; i += step) {
         ctx.moveTo(i, 0);
         ctx.lineTo(i, h);
         ctx.stroke();
     }
 
-    for (j = 1; j < h; j = j += step) {
+    for (var j = 1; j < h; j = j += step) {
         ctx.moveTo(0, j);
         ctx.lineTo(w, j);
         ctx.stroke();
@@ -176,7 +176,7 @@ function drawGrid(obj) {
 function startModelRun() {
 
     if (document.getElementById("canvas") != null) {
-        clearInterval(move);
+        clearInterval(moveInterval);
         document.getElementById("canvas").remove();
     };
 
@@ -184,12 +184,15 @@ function startModelRun() {
     populate(TASEPobj);
     drawGrid(TASEPobj);
 
-    move = setInterval(function () {
+    moveInterval = setInterval(function () {
 
         move_dinamics(TASEPobj);
         // console.log(TASEPobj.position);
-        document.getElementById("canvas").remove();
-        move_dinamics(TASEPobj);
+        
+        if (document.getElementById("canvas") != null) {
+            document.getElementById("canvas").remove();
+        };
+
         count++;
         document.getElementById("flowdata").textContent = (TASEPobj.results.flow / count);
         // console.log(TASEPobj.position)
@@ -261,18 +264,19 @@ function move_dinamics(obj) {
     var x = Math.floor(Math.random() * r);
     var y = Math.floor(Math.random() * L);
 
+
     var movecount = 0;
     var vmaxcount = 0;
 
     // speed_check=1;
-    if (obj.Vmax - 1 == vmaxcount) {
-        vmaxcount = vmaxcount - 1;
+    if(obj.Vmax-1==vmaxcount){
+        vmaxcount=vmaxcount-1;
     }
 
     var move = true;
     // console.log(obj.position);
     if (ext_array[x][y] == 1) {
-        while (vmaxcount < obj.Vmax - 1 && move == true) { //loop to keep moving
+        while (vmaxcount < obj.Vmax-1 && move == true) { //loop to keep moving
             // console.log(obj.position);
             if (ext_array[x][y] == 1) {
                 // v[x][y]=Math.min(obj.Vmax,v[x][y]+1);
@@ -372,6 +376,7 @@ function move_dinamics(obj) {
 
     return obj;
 }
+
 
 //make zeros
 function make_zeros(obj) {
