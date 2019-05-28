@@ -9,7 +9,7 @@ TASEPobj = {
     responseInstinct: 0,
     results: {
         flow: 0,
-        rho: 0,
+        rho: 0, 
         averageSpeed: 0,
     }
 }
@@ -30,7 +30,7 @@ for (var i = 1; i < TASEPobj.columns * TASEPobj.rows; i = i + 1) {
     recursive_move(TASEPobj);
     // console.log(TASEPobj);
     // console.log(TASEPobj.position);
-    console.log(TASEPobj.results.rho + ", " + TASEPobj.results.flow/counter);
+    console.log(TASEPobj.results.rho + ", " + TASEPobj.results.flow/counter*TASEPobj.columns);
     // drawGrid(TASEPobj);
 }
 

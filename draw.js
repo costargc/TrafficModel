@@ -33,8 +33,8 @@ $("#stopModel").on("click", function (event) {
 $("#runModel").on("click", function (event) {
     event.preventDefault();
 
-    myFlowdataLabel = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    myFlowdata = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    myFlowdataLabel = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    myFlowdata      = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
     count = 0;
     TASEPobj.cars = $('#cars').val();
@@ -188,17 +188,17 @@ function startModelRun() {
 
         move_dinamics(TASEPobj);
         // console.log(TASEPobj.position);
-        
+
         if (document.getElementById("canvas") != null) {
             document.getElementById("canvas").remove();
         };
 
         count++;
-        document.getElementById("flowdata").textContent = (TASEPobj.results.flow / count);
+        document.getElementById("flowdata").textContent = (TASEPobj.results.flow / count*TASEPobj.columns);
         // console.log(TASEPobj.position)
         drawGrid(TASEPobj);
         if (count % 100 == 0) {
-            myFlowdata.shift(); myFlowdata.push(TASEPobj.results.flow / count);
+            myFlowdata.shift(); myFlowdata.push(TASEPobj.results.flow / count*TASEPobj.columns);
             myFlowdataLabel.shift(); myFlowdataLabel.push(count / 100);
             // createChart();
             myChart.update(0);
