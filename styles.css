@@ -8,9 +8,15 @@ body {
     background: white;
     padding: 40px;
     width: 800px;
-    height:95vh;
-    min-height:200%;
-    overflow-y: scroll;
+}
+
+@media screen and (max-width: 400px){
+    body{
+        background: white;
+        padding: 40px;
+        width: 800px;
+        min-height:1500px;
+  }
 }
 
 header > h1 {
