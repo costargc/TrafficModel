@@ -8,6 +8,7 @@ body {
     background: white;
     padding: 40px;
     width: 800px;
+    height:100vh;
     min-height:100%;
 }
 
