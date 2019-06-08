@@ -8,7 +8,7 @@ body {
     background: white;
     padding: 40px;
     width: 800px;
-
+    min-height:100%;
 }
 
 header > h1 {
