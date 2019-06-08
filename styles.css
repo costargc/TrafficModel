@@ -8,9 +8,9 @@ body {
     background: white;
     padding: 40px;
     width: 800px;
-    height:200vh;
-    min-height:100%;
-    overflow-y: visible;
+    height:95vh;
+    min-height:200%;
+    overflow-y: scroll;
 }
 
 header > h1 {
